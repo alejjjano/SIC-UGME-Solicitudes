@@ -1,0 +1,778 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+
+<head id="j_idt2">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>sisugme: SISTEMA DE UGME</title>
+  <link type="text/css" rel="stylesheet" href="/sisugme/javax.faces.resource/theme.css.xhtml?ln=primefaces-omega" />
+  <link type="text/css" rel="stylesheet" href="/sisugme/javax.faces.resource/fa/font-awesome.css.xhtml?ln=primefaces&amp;v=6.1" />
+  <link type="text/css" rel="stylesheet" href="/sisugme/javax.faces.resource/components.css.xhtml?ln=primefaces&amp;v=6.1" />
+  <script type="text/javascript" src="/sisugme/javax.faces.resource/jquery/jquery.js.xhtml?ln=primefaces&amp;v=6.1"></script>
+  <script type="text/javascript" src="/sisugme/javax.faces.resource/jquery/jquery-plugins.js.xhtml?ln=primefaces&amp;v=6.1"></script>
+  <script type="text/javascript" src="/sisugme/javax.faces.resource/core.js.xhtml?ln=primefaces&amp;v=6.1"></script>
+  <script type="text/javascript" src="/sisugme/javax.faces.resource/components.js.xhtml?ln=primefaces&amp;v=6.1"></script>
+  <link type="text/css" rel="stylesheet" href="/sisugme/javax.faces.resource/watermark/watermark.css.xhtml?ln=primefaces&amp;v=6.1" />
+  <script type="text/javascript" src="/sisugme/javax.faces.resource/watermark/watermark.js.xhtml?ln=primefaces&amp;v=6.1"></script>
+  <script type="text/javascript">
+    if (window.PrimeFaces) {
+      PrimeFaces.settings.locale = 'en_US';
+    }
+  </script>
+  <link type="text/css" rel="stylesheet" href="/sisugme/resources/css/default.css" />
+  <link type="text/css" rel="stylesheet" href="/sisugme/resources/css/gandalf.css" />
+  <link type="text/css" rel="stylesheet" href="/sisugme/resources/css/syntaxhighlighter.css" />
+  <link rel="stylesheet" href="/sisugme/resources/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/sisugme/resources/font-awesome/css/font-awesome-animation.css" />
+
+  <style type="text/css">
+    .ui-panelmenu .ui-panelmenu-content {
+      padding: .2em 0;
+      border-top: 0;
+      margin-top: -2px;
+      position: relative;
+      top: 1px;
+      overflow: auto;
+      zoom: 1;
+      outline: 0;
+      background: #F2F8FA;
+      border-color: #F2F8FA;
+    }
+
+    .ui-panelmenu .ui-panelmenu-header.ui-state-active,
+    .ui-panelmenu .ui-panelmenu-header.ui-state-active a {
+      background: #186ba0;
+      color: #fff;
+      border-color: #186ba0;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 25px;
+      padding-top: 8px;
+      background-color: #F2F8FA;
+      /*background: linear-gradient(229deg, #fd9a77, #fb827a);*/
+      width: 100%;
+      border: 1px solid silver;
+    }
+
+    .container {
+      position: relative;
+      margin-bottom: 50px;
+    }
+
+    .ui-layout-north {
+      z-index: 20 !important;
+      overflow: visible !important;
+      ;
+    }
+
+    .ui-layout-north .ui-layout-unit-content {
+      overflow: visible !important;
+    }
+
+    .gandalfBody {
+      /*
+					background-image:url('/sisugme/javax.faces.resource/background.jpg.xhtml?ln=img/background');
+					background-repeat:no-repeat;
+					-webkit-background-size:cover;
+					-moz-background-size:cover;
+					-o-background-size:cover;
+					background-size:cover;
+					background-position:center;
+
+					margin: 0;
+					padding: 0;
+					font-family: geneva, arial, helvetica, sans-serif;
+					font-size:12px;
+					*/
+      /*
+					background: url('/sisugme/javax.faces.resource/background.jpg.xhtml?ln=img/background');
+					*/
+      /*background-color:#95CDE8;*/
+      background: linear-gradient(#1B5CA3, #98368A, #C03B38);
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      font-family: geneva, arial, helvetica, sans-serif;
+      font-size: 12px;
+      background-image: url('/sisugme/javax.faces.resource/background.jpg.xhtml?ln=img/background');
+    }
+
+    .ui-menuitem-icon.ui-icon.secureIcon {
+      background: url('/sisugme/javax.faces.resource/lock.png.xhtml?ln=img') no-repeat;
+      width: 16px;
+      height: 16px;
+      border-radius: 0px;
+    }
+
+    .ui-menuitem-icon.ui-icon.appleIcon {
+      background: url('/sisugme/javax.faces.resource/apple.png.xhtml?ln=img') no-repeat;
+      width: 16px;
+      height: 16px;
+      border-radius: 0px;
+    }
+
+    .ui-menu .ui-menu-parent .ui-menu-child {
+      width: 250px;
+    }
+
+    .ui-dialog .ui-terminal {
+      border: 0;
+    }
+
+    .ui-dialog.terminalDialog .ui-dialog-content {
+      padding: 0;
+    }
+
+    /**THEME DELTA - INICIO*/
+
+    body,
+    td,
+    th,
+    tr {
+      font-family: "Century Gothic";
+      /*color: #077D9B;*/
+      /*COMENTAR ESTA LINEA PARA THEME DELTA*/
+      font-size: 12px;
+    }
+
+    /**Titulo de panel*/
+
+    .ui-panel .ui-panel-title {
+      margin: 0.1em 16px 0.2em 0;
+
+    }
+
+    /**Css para los Label. class="ui-outputlabel ui-widget"*/
+
+    .ui-widget .ui-outputlabel {
+      color: #077D9B;
+    }
+
+    /**Campos requeridos=true*/
+
+    .ui-outputlabel-rfi {
+      color: red;
+      font-weight: bold;
+    }
+
+    /**THEME DELTA - FIN*/
+
+    .c_numeric {
+      text-align: right;
+    }
+
+    .c_numeric_resumen {
+      text-align: right;
+      font-size: 30;
+      font-weight: bold;
+      background-color: yellow;
+    }
+
+    .c_center {
+      text-align: center;
+    }
+
+    .c_center_estado {
+      text-align: center;
+      width: 70px;
+    }
+
+    .c_center_id {
+      text-align: center;
+      width: 70px;
+    }
+
+    .c_string {
+      text-align: left;
+    }
+
+    .c_right {
+      text-align: right;
+    }
+
+    .companyHeaderGrid tr,
+    .companyHeaderGrid td {
+      border: none;
+    }
+
+    .old {
+      /*background: #BED6E3;*/
+      /*background: yellow;*/
+      background: #FFFF99;
+    }
+
+    .dead {
+      /*background: #BED6E3;*/
+      /*background: orange;*/
+      background: #FCA752;
+    }
+
+    .ci {
+      /*background: #BED6E3;*/
+      background: orange;
+    }
+
+    /*Colores*/
+
+    .gBlue {
+      background: lightblue;
+    }
+
+    .gBlueBold {
+      background: lightblue;
+      font-weight: bold;
+    }
+
+    .gGreen {
+      background: lightgreen;
+    }
+
+    .gGreenBold {
+      background: lightgreen;
+      font-weight: bold;
+    }
+
+    .gOrangeBold {
+      background: orange;
+      font-weight: bold;
+    }
+
+    /*
+				PENDIENTEW
+				http://stackoverflow.com/questions/1014861/is-there-a-css-parent-selector*/
+
+    li:has(>a.active) {
+      /* styles to apply to the li tag */
+    }
+
+
+
+    .input {
+      height: 1.7em;
+    }
+
+    .repo-sep-header {
+      background: #FFA500;
+      font-weight: bold;
+    }
+
+    .repo-sep-footer {
+      background: #FFFF99;
+      font-weight: bold;
+    }
+
+    .libre {
+      background: #61C261;
+    }
+
+    .ocupado {
+      background: #EB605C;
+    }
+
+    .dateTimeField input {
+      width: 150px;
+    }
+
+    /*
+				.gandalfTableClass table {
+
+				}
+
+				.gandalfTableClass table tr {
+
+				}
+				*/
+
+    /*Table td*/
+
+    .gandalfTableClass table tr td {
+      /*border-collapse: separate;
+				    border-spacing: 0px;*/
+      /*border-collapse: expression('separate', cellSpacing = '0px');*/
+      padding: 1px 1px 1px 1px;
+      margin: 0px 0px 0px 0px;
+    }
+
+    /*PanelC de la pagina de registro y detalle*/
+
+    .gandalfDialog {}
+
+    /*PanelC de la pagina de registro y detalle*/
+
+    .gandalfPanelClassSectionFormHeader {
+      padding: 0px 1px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      background-color: #F2F8FA;
+    }
+
+    .gandalfPanelClassSectionFormHeaderP {
+      padding: 0px 1px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      border: 0px;
+      background-color: #F2F8FA;
+    }
+
+
+    .gandalfPanelClassSectionFormDetail {
+      padding: 0px 1px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      /*background-color:#F0F0F0;
+				    border-color:#888888;*/
+      /*border: 1px solid #d5d5d5;*/
+      background-color: #F2F8FA;
+      color: #222;
+    }
+
+
+    .gandalfPanelClassSectionFormFooter {
+      padding: 0px 1px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      background-color: lightblue;
+      border-color: #888888;
+    }
+
+    .gandalfPanelClassBusqueda {
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px;
+    }
+
+    /*Disabled inputs*/
+
+    .ui-state-disabled,
+    .ui-widget-content .ui-state-disabled,
+    .ui-widget-header .ui-state-disabled {
+      opacity: .7;
+      filter: Alpha(Opacity=7);
+      background-image: none;
+    }
+
+    /*Input text*/
+
+    .ui-widget-header .ui-inputfield,
+    .ui-widget-content .ui-inputfield {
+      font-weight: normal;
+      /*padding: 2px 2px 2px 2px;*/
+      /*margin: 0px 0px 0px 0px;*/
+      color: #2d2e2f;
+      /*font-family: monospace;*/
+    }
+
+    /*Select checkbox menu*/
+
+    .ui-selectcheckboxmenu .ui-selectcheckboxmenu-label {
+      display: block;
+      /*padding: 3px 26px 3px 5px;*/
+      padding: 1px 26px 1px 1px;
+      /**/
+      width: auto;
+      border: none;
+      cursor: pointer;
+    }
+
+    .ui-radiobutton {
+      margin: 0px 0px 0px 0px;
+      /**/
+      width: 16px;
+      line-height: 15px;
+      display: inline-block;
+    }
+
+    .ui-button .ui-button-text {
+      /*display: block;
+				    line-height: normal;*/
+      /*margin-top: -3px;*/
+      /*padding: 5px 5px 1px 22px;/**/
+      height: 15px;
+    }
+
+    /*solo si se usa facet header. para los titulos de las opciones.*/
+
+    .gandalfPanel-header {
+      color: #4f4f4f;
+    }
+
+    .gandalfPnlBotonesClass {
+      padding: 0px 1px 0px 0px;
+      border: 0px;
+    }
+
+    .toolTipPortal {
+      /*font-weight:bold;*/
+      color: white;
+      ;
+      border: 1px solid #272727;
+      border-radius: 3px;
+      background: #272727;
+      filter: alpha(opacity=90);
+      /* IE */
+      -moz-opacity: 0.9;
+      /* Mozilla */
+      opacity: 0.9;
+    }
+
+    < !--DELTA-->
+    /*
+  				.ui-datepicker-today a.ui-state-highlight{
+  				 	color:#FFF;
+  				    background: #2182c5;
+  				}
+  				body .ui-datepicker table td.ui-datepicker-today a {
+  				   	color:#FFF;
+  				    background: #2182c5;
+  				}
+  				.ui-datepicker td a.ui-state-default.ui-state-hover{
+  				 	color: #FFF;
+  				    background: #595c5d;
+  				}
+  				.ui-datepicker-today a.ui-state-highlight{
+  					color: #FFF;
+  				    background: #595c5d;
+  				}
+  				.ui-menuitem-link ui-submenu-link ui-corner-all ui-state-hover{
+  					color: #FFF;
+  				    background: #27abff;
+  				}
+  				.ui-widget-content a:hover {
+  				  	color: #FFF;
+  				    background: #27abff;
+  				}
+  				.ui-button, button.ui-button.ui-state-default, .ui-button.ui-state-default {
+  				    color: #fff;
+  				    font-size: 13px;
+  				    border: 1px solid #168dd9;
+  				    background: #27abff;
+  				}
+  				.ui-button, button.ui-button.ui-state-hover, .ui-button.ui-state-hover {
+  					border: 1px solid #1f89ce;
+      				background: #2399e5;
+  				}
+  				.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  				    color: #fff;
+  				    border: 1px solid #1f89ce;
+  				    background: #2399e5;
+  				}
+  				.ui-panel .ui-panel-title {
+  				    margin: .1em 16px .2em 0;
+  				    font-family: sans-serif;
+  				}
+  				.ui-button, .ui-button span, button.ui-button.ui-state-default span, .ui-button.ui-state-default span {
+  				    font-weight: normal;
+  				}
+  				.ui-inputswitch .ui-inputswitch-on span {
+  				    font-weight: normal;
+  				}
+  				.ui-inputswitch .ui-inputswitch-off span {
+  				    font-weight: normal;
+  				}
+  				.ui-tabs:not(.ui-ribbon) .ui-tabs-nav {
+  				    background: #F2F8FA;
+  				}
+  				.ui-dialog{
+  				 	background-color: #FFF;
+  				}
+  				*/
+
+    < !--OMEGA DEFAULT-->
+    /*.ui-panel .ui-panel-title {
+  				    margin: .1em 16px .2em 0;
+  				    font-family: sans-serif;
+  				}
+  				.ui-button, .ui-button span, button.ui-button.ui-state-default span, .ui-button.ui-state-default span {
+  				    font-weight: normal;
+  				}*/
+
+    < !--OMEGA CUSTOM-->.ui-datepicker-today a.ui-state-highlight {
+      color: #FFF;
+      background: #2182c5;
+    }
+
+    body .ui-datepicker table td.ui-datepicker-today a {
+      color: #FFF;
+      background: #2182c5;
+    }
+
+    .ui-datepicker td a.ui-state-default.ui-state-hover {
+      color: #FFF;
+      background: #595c5d;
+    }
+
+    .ui-datepicker-today a.ui-state-highlight {
+      color: #FFF;
+      background: #595c5d;
+    }
+
+    .ui-menuitem-link ui-submenu-link ui-corner-all ui-state-hover {
+      color: #FFF;
+      background: #3984b8;
+    }
+
+    .ui-widget-content a:hover {
+      /*-webkit-transition: all 0.2s ease-in-out;
+				    -o-transition: all 0.2s ease-in-out;
+				    transition: all 0.2s ease-in-out;
+				    margin-left: 10px;
+				    padding-left: 10px;*/
+      color: #FFF;
+      background: #3984b8;
+
+    }
+
+    .ui-button,
+    button.ui-button.ui-state-default,
+    .ui-button.ui-state-default {
+      border: 1px solid transparent;
+      background: #3984b8;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .ui-button,
+    button.ui-button.ui-state-hover,
+    .ui-button.ui-state-hover {
+      color: #fff;
+      border: 1px solid #156090;
+      background: #186ba0;
+    }
+
+    .ui-state-highlight,
+    .ui-widget-content .ui-state-highlight,
+    .ui-widget-header .ui-state-highlight {
+      color: #fff;
+      border: 1px solid #156090;
+      background: #186ba0;
+    }
+
+    .ui-panel .ui-panel-title {
+      margin: .1em 16px .2em 0;
+      font-family: sans-serif;
+    }
+
+    .ui-button,
+    .ui-button span,
+    button.ui-button.ui-state-default span,
+    .ui-button.ui-state-default span {
+      font-weight: normal;
+    }
+
+    .ui-inputswitch .ui-inputswitch-on span {
+      font-weight: normal;
+    }
+
+    .ui-inputswitch .ui-inputswitch-off span {
+      font-weight: normal;
+    }
+
+    .ui-tabs:not(.ui-ribbon) .ui-tabs-nav {
+      background: #F2F8FA;
+    }
+
+    .ui-dialog {
+      background-color: #FFF;
+    }
+
+    .ui-panel .ui-panel-content {
+      border: 0;
+      background: 0;
+      padding: .5em 1em;
+      border-radius: 60px !important;
+    }
+
+    .ui-panel {
+      background: #f2f2f2;
+    }
+
+    .fa-user1 {
+      background-image: url("./resources/img/login.png") !important;
+      height: 30px !important;
+      width: 40px !important;
+      background-repeat: no-repeat !important;
+
+
+    }
+
+    input {
+      border-radius: 60px !important;
+    }
+
+    .fa-lock1 {
+      background-image: url("./resources/img/candado.png") !important;
+      height: 30px !important;
+      width: 40px !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .botonimagen {
+      background-image: url("./resources/img/ingresar.png") !important;
+      background-repeat: no-repeat;
+
+      background-position: center;
+      border-radius: 22px;
+      background: #FFFFFF;
+      color: #FFFFFF;
+    }
+
+    .botonimagen:hover {
+      color: #1883ba !important;
+      background-color: #B0C4DE !important;
+    }
+
+    font {
+      color: #226092;
+      font-weight: normal;
+      font-family: Eurostile;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function actualizarCant() {
+      var cant = jQuery('#form\\:txtCantidad').val();
+      jQuery('#form\\:txtCantidad2').val(cant);
+    }
+  </script>
+</head>
+
+<body bottommargin="0" topmargin="0" rightmargin="0" leftmargin="0" class="gandalfBody" onload="onLoadPage();">
+
+  <div align="center" class="container" style="border-radius: 20px;">
+    <div align="center" style="margin-top: 100px; border-radius: 20px;">
+
+      <form id="form" name="form" method="post" action="/sisugme/login.xhtml" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="form" value="form" />
+        <div id="form:diLogin" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="width:30%;margin-top:5%; border-radius: 20px;" data-widget="diLogin">
+          <div id="form:diLogin_content" class="ui-panel-content ui-widget-content">
+            <div id="form:j_idt6" class="ui-panel ui-widget ui-widget-content ui-corner-all gandalfPanelClassSectionFormHeader" style="border-style: hidden; border-radius: 20px;" data-widget="widget_form_j_idt6">
+              <div id="form:j_idt6_content" class="ui-panel-content ui-widget-content">
+                <span id="form:j_idt7"></span>
+                <script type="text/javascript">
+                  $(function() {
+                    PrimeFaces.focus('form:txtUsuario');
+                  })
+                </script>
+                <table style="width:100%;">
+                  <tr>
+                    <td align="center" colspan="2">
+                      <font size="15">SIC-UGME</font>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" colspan="2">
+                      <label id="form:j_idt9" class="ui-outputlabel ui-widget" style="font-family: Eurostile; font-style:regular;">Sistema de Información y Comunicación de la <br />Unidad Gerencial de Mobiliario y Equipamiento<br /><br /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center">
+                      <table>
+                        <tr>
+                          <td align="center">
+                            <i class="fa fa-fw fa-user1" aria-hidden="true"></i></td>
+                          <td>
+                            <input id="form:txtUsuario" name="form:txtUsuario" type="text" maxlength="20" size="30" style="width:90%;" aria-required="true" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
+                            <script id="form:txtUsuario_s" type="text/javascript">
+                              PrimeFaces.cw("InputText", "txtUsuario", {
+                                id: "form:txtUsuario"
+                              });
+                            </script>
+                            <label id="form:j_idt12" class="ui-outputlabel ui-widget" for="form:txtUsuario"><span class="ui-outputlabel-rfi">*</span></label>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center">
+                      <table>
+                        <tr>
+                          <td align="center">
+                            <i class="fa fa-fw fa-lock1" aria-hidden="true"></i>
+                          </td>
+                          <td><input id="form:txtPassword" name="form:txtPassword" type="password" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all" style="width:90%;" maxlength="10" size="30" aria-required="true" />
+                            <script id="form:txtPassword_s"
+                              type="text/javascript">
+                              $(function() {
+                                PrimeFaces.cw("Password", "txtPassword", {
+                                  id: "form:txtPassword"
+                                });
+                              });
+                            </script><label id="form:j_idt14" class="ui-outputlabel ui-widget" for="form:txtPassword"><span class="ui-outputlabel-rfi">*</span></label>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align:center">
+                      <br /><br />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center"><button id="form:j_idt16" name="form:j_idt16" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only botonimagen" onclick="PrimeFaces.onPost();" style="width:50%;height :40px" type="submit"><span class="ui-button-text ui-c"></span></button>
+                      <script
+                        id="form:j_idt16_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_form_j_idt16",{id:"form:j_idt16"});</script>
+                    </td>
+                    <!-- &lt;td align="right"&gt;
+        				&lt;p:commandLink value="Solicitar cambio de clave" action="# {loginBean.irSolicitarCambioClave}" ajax="false" immediate="true"/&gt;
+        			&lt;/td&gt; -->
+                  </tr>
+                </table>
+                <div id="form:j_idt18" class="ui-messages ui-widget" aria-live="polite"></div>
+              </div>
+            </div>
+            <script id="form:j_idt6_s" type="text/javascript">
+              PrimeFaces.cw("Panel", "widget_form_j_idt6", {
+                id: "form:j_idt6"
+              });
+            </script>
+          </div>
+        </div>
+        <script id="form:diLogin_s" type="text/javascript">
+          PrimeFaces.cw("Panel", "diLogin", {
+            id: "form:diLogin"
+          });
+        </script>
+        <script id="form:j_idt19_s" type="text/javascript">
+          $(function() {
+            PrimeFaces.cw("Watermark", "widget_form_j_idt19", {
+              id: "form:j_idt19",
+              value: "Usuario",
+              target: "form:txtUsuario"
+            });
+          });
+        </script>
+        <script id="form:j_idt20_s" type="text/javascript">
+          $(function() {
+            PrimeFaces.cw("Watermark", "widget_form_j_idt20", {
+              id: "form:j_idt20",
+              value: "Clave",
+              target: "form:txtPassword"
+            });
+          });
+        </script><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="0al5AaG+GlUTI5xy0qPnaqiny4ayOZNvDb+3qE3YQHkbVVVWVeK3JcAnBvGKBVMAbUU3gDlAg93rsP4Bza5uvtj/cHvQEwWy/yg9HhRX3I7P7fUPLP61gtpY5LvDvoBI1XN/7M7NQn4mBjWbokvco1YEWqT4GlNawKSivoj1s4XTNTkV/t4rdwLc/Lo8+96bG9oKC//18KT4JWX5Aa5XeNpcckl5pqLVdtZ1sZOQNIIhBHqQ0frg9MSozNp17kXmSwV6pcEbU7r6WnFq2OolELIXrkGSnB38Npc6HimeoUsdyY58Lp8poNosD4o58l6LXlJEQWwcRyT9q2Lzz6VlRmL10VYLaQXKTAT7zviFmOI3xoIJALu52siQMh1Oq5iccDv2LBRw5fd0lBAlAWcmJnP0+mlAzCXIp/3vk4Mac1qLIVSpw7rPAhXtbkbkJRSKuAgqmr9trQx0O50fboCwSTYvU72rlQq2rhph5NYjY69IOSRu9/SM+BLfX1ktW1Uncy3w6sDVJtkv3OSVpJyp0xaicP7vfRP/2DVMFPPIpYV69No/CdbuFfr98wV0/cdfdnYqJ+Cqw1pf2puOUUGMazT5sCx16T7isjDT/S5bDO/xPVe3WxjG4v4JMW56LG1uv+98ex1CAft3hzcVGQQ5jNyg7MWXI9l/X/fphwInOtMAVZAOD3M0DukcL99E0cwr"
+          autocomplete="off" />
+      </form>
+
+    </div>
+  </div>
+
+  <footer>
+    <table style="width:100%">
+      <tr>
+        <td>
+          <span><img id="j_idt22" width="10" alt="" src="/sisugme/javax.faces.resource/spacer/dot_clear.gif.xhtml?ln=primefaces&amp;v=6.1" /><a id="j_idt23" href="#" class="ui-commandlink ui-widget" onclick="PF('dlg3').show();return;;PrimeFaces.ab({s:&quot;j_idt23&quot;});return false;"><img src="/sisugme/resources/img/background/GandalfSoft.png" height="15" title="Contactenos" /></a>
+    				</span>
+        </td>
+        <td align="right"><label id="j_idt26" class="ui-outputlabel ui-widget" style="font-weight:bold;">SIC-UGME: Sistema de Información y Comunicación de la Unidad Gerencial de Mobiliario y Equipamiento - PRONIED - MINEDU</label><img id="j_idt27" width="10" alt="" src="/sisugme/javax.faces.resource/spacer/dot_clear.gif.xhtml?ln=primefaces&amp;v=6.1" />
+          <label
+            id="j_idt28" class="ui-outputlabel ui-widget" style="font-weight:bold;">V. 1.0.0</label><img id="j_idt29" width="10" alt="" src="/sisugme/javax.faces.resource/spacer/dot_clear.gif.xhtml?ln=primefaces&amp;v=6.1" /><label id="j_idt30" class="ui-outputlabel ui-widget" style="font-weight:bold;">R. ini</label>
+        </td>
+      </tr>
+    </table>
+  </footer>
+
+</body>
+
+</html>
